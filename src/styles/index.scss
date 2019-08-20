@@ -3,6 +3,7 @@
 @import './transition.scss';
 @import './element-ui.scss';
 @import './sidebar.scss';
+@import './zensUI.pc.scss';
 
 body {
   height: 100%;
@@ -62,4 +63,10 @@ div:focus {
 // main-container global css
 .app-container {
   padding: 20px;
+}
+
+.page-title {
+  font-size: 14px;
+  text-align: left;
+  padding: 20px 0 20px 20px;
 }

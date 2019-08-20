@@ -1,0 +1,175 @@
+/* Box model */
+@import "./function";
+@import "./vars";
+
+/**
+  外边距、内边距
+ */
+@for $i from 0 through $layout-number{
+  .margin#{$i * $box-increase-gradient}{ margin: get-layout-size($i, 1); }
+  .margint#{$i * $box-increase-gradient}{ margin-top: get-layout-size($i, 1); }
+  .marginb#{$i * $box-increase-gradient}{ margin-bottom: get-layout-size($i, 1); }
+  .marginl#{$i * $box-increase-gradient}{ margin-left: get-layout-size($i, 1); }
+  .marginr#{$i * $box-increase-gradient}{ margin-right: get-layout-size($i, 1); }
+  .margint-n#{$i * $box-increase-gradient}{ margin-top: get-layout-size($i, -1); }
+  .marginb-n#{$i * $box-increase-gradient}{ margin-bottom: get-layout-size($i, -1); }
+  .marginl-n#{$i * $box-increase-gradient}{ margin-left: get-layout-size($i, -1); }
+  .marginr-n#{$i * $box-increase-gradient}{ margin-right: get-layout-size($i, -1); }
+
+  .marginh#{$i * $box-increase-gradient}{
+    @extend .marginl#{$i * $box-increase-gradient};
+    @extend .marginr#{$i * $box-increase-gradient};
+  }
+
+  .marginv#{$i * $box-increase-gradient}{
+    @extend .margint#{$i * $box-increase-gradient};
+    @extend .marginb#{$i * $box-increase-gradient};
+  }
+  .padding#{$i * $box-increase-gradient}{ padding: get-layout-size($i, 1); }
+  .paddingt#{$i * $box-increase-gradient}{ padding-top: get-layout-size($i, 1); }
+  .paddingb#{$i * $box-increase-gradient}{ padding-bottom: get-layout-size($i, 1); }
+  .paddingl#{$i * $box-increase-gradient}{ padding-left: get-layout-size($i, 1); }
+  .paddingr#{$i * $box-increase-gradient}{ padding-right: get-layout-size($i, 1); }
+
+  .paddingh#{$i * $box-increase-gradient}{
+    @extend .paddingl#{$i * $box-increase-gradient};
+    @extend .paddingr#{$i * $box-increase-gradient};
+  }
+
+  .paddingv#{$i * $box-increase-gradient}{
+    @extend .paddingt#{$i * $box-increase-gradient};
+    @extend .paddingb#{$i * $box-increase-gradient};
+  }
+  %top#{$i * $box-increase-gradient}{ top: get-layout-size($i, 1); }
+  %right#{$i * $box-increase-gradient}{ right: get-layout-size($i, 1); }
+  %left#{$i * $box-increase-gradient}{ left: get-layout-size($i, 1); }
+  %bottom#{$i * $box-increase-gradient}{ bottom: #{ get-layout-size($i, 1)}; }
+  %top-n#{$i * $box-increase-gradient}{ top: get-layout-size($i, -1); }
+  %right-n#{$i * $box-increase-gradient}{ right: get-layout-size($i, -1); }
+  %left-n#{$i * $box-increase-gradient}{ left: get-layout-size($i, -1); }
+  %bottom-n#{$i * $box-increase-gradient}{ bottom: get-layout-size($i, -1); }
+}
+
+.border {
+  border: $border-width $border-style $border-color-default;
+
+  &l {
+    border-left: $border-width $border-style $border-color-default;
+  }
+
+  &r {
+    border-right: $border-width $border-style $border-color-default;
+  }
+
+  &t {
+    border-top: $border-width $border-style $border-color-default;
+  }
+
+  &b {
+    border-bottom: $border-width $border-style $border-color-default;
+  }
+
+  &h {
+    border-left: $border-width $border-style $border-color-default;
+    border-right: $border-width $border-style $border-color-default;
+  }
+
+  &v {
+    border-top: $border-width $border-style $border-color-default;
+    border-bottom: $border-width $border-style $border-color-default;
+  }
+
+  &n {
+    border: none;
+  }
+
+  &.item {
+    > {
+      @include uni-selector() {
+        border: $border-width $border-style $border-color-default;
+      }
+    }
+  }
+
+  &.itemv,
+  &.itemh {
+    > {
+      @include uni-selector() {
+        border-top: $border-width $border-style $border-color-default;
+
+        &:first-child {
+          border-top: none;
+        }
+      }
+    }
+  }
+
+  &.round,
+  &n.round {
+    border-radius: 50%;
+  }
+
+  &.radius,
+  &n.radius {
+    border-radius: $border-radius-base;
+  }
+}
+
+@if (not $is-pc) {
+  .bordert.light,
+  .borderr.light,
+  .borderb.light,
+  .borderl.light {
+    position: relative;
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-color: map-get($gray-list, 'lighter');
+    }
+  }
+
+  .bordert.light::before {
+    bottom: auto;
+    height: $border-width;
+    transform: scaleY(.5);
+  }
+
+  .borderr.light::before {
+    left: auto;
+    width: $border-width;
+    transform: scaleX(.5);
+  }
+
+  .borderb.light::before {
+    top: auto;
+    height: $border-width;
+    transform: scaleY(.5);
+  }
+
+  .borderl.light::before {
+    right: auto;
+    width: $border-width;
+    transform: scaleX(.5);
+  }
+}
+
+/**
+  盒模型定义
+ */
+.b-box {
+  @include box-sizing(border-box);
+}
+
+.p-box {
+  @include box-sizing(padding-box);
+}
+
+.c-box {
+  @include box-sizing(content-box);
+}

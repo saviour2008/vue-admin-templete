@@ -1,0 +1,129 @@
+/**
+  基础变量
+ */
+ $is-wx: false !default;    // 是否为微信小程序
+ $is-pc: false !default;     // 是否为PC端
+ $is-weex: false !default;   // 是否为Weex
+ 
+ /*
+ *   颜色系统
+ */
+ 
+ //灰度定义
+ $black:    #000 !default;
+ $gray-800: #333 !default;
+ $gray-600: #666 !default;
+ $gray-500: #999 !default;
+ $gray-400: #b3b3b3 !default;
+ $gray-100: #ebebeb !default;
+ $white:    #fff !default;
+ 
+ /**
+   灰度列表
+  */
+ $gray-list: () !default;
+ $gray-list: map-merge(
+   (
+     'black':      $black,
+     'darker':     $gray-800,
+     'dark':       $gray-600,
+     'gray':       $gray-500,
+     'light':      $gray-400,
+     'lighter':    $gray-100,
+     'white':      $white
+   ),
+   $gray-list
+ );
+ 
+ //基础色值定义
+ $blue:    #007bff !default;
+ $indigo:  #6610f2 !default;
+ $purple:  #6f42c1 !default;
+ $pink:    #e83e8c !default;
+ $red:     #e23939 !default;
+ $orange:  #fd7e14 !default;
+ $yellow:  #ffc107 !default;
+ $green:   #28a745 !default;
+ $teal:    #20c997 !default;
+ $cyan:    #17a2b8 !default;
+ $gold:    #b89267 !default;
+ 
+ //主题色定义
+ $primary:       $gold !default;
+ $secondary:     $gray-600 !default;
+ $success:       $green !default;
+ $info:          $cyan !default;
+ $warning:       $yellow !default;
+ $danger:        $red !default;
+ $light:         map-get($gray-list, 'light');
+ $gray:          map-get($gray-list, 'gray');
+ $dark:          map-get($gray-list, 'dark');
+ 
+ $color-list: () !default;
+ // stylelint-disable-next-line scss/dollar-variable-default
+ $color-list: map-merge(
+   (
+     'primary': $primary,
+     'red': $red,
+     'orange': $orange,
+     'yellow': $yellow,
+     'green': $green,
+     'blue': $blue,
+     'purple': $purple,
+     'black': $black,
+     'dark': $dark,
+     'darker': map-get($gray-list, 'darker'),
+     'gray': $gray,
+     'light': $light,
+     'lighter': map-get($gray-list, 'lighter'),
+     'white': $white,
+   ),
+   $color-list
+ );
+ 
+ /**
+   其他数值
+  */
+ //button
+ $btn-size-list: () !default;
+ //parameters： $height, $padding-horizontal, $font-size
+ // stylelint-disable function-comma-newline-after
+ $btn-size-list: map-merge(
+   (
+     'base': (65, 30, 30),
+     'small': (55, 20, 26),
+     'big': (88, 30, 32)
+   ),
+   $btn-size-list
+ );
+ //按钮圆角
+ $btn-radius-size: rpx(10) !default;
+ 
+ //布局相关
+ $layout-number:          5 !default;
+ $box-increase-gradient: 10 !default;
+ $line-height-base:      20/14 !default;
+ 
+ $container-padding: rpx(20) !default;
+ //TODO 该值有待商榷
+ $container-width: rpx(750) !default;
+ $border-radius-base:        rpx(8) !default;
+ $border-color-default:      #eee !default;
+ $border-width:              rpx(1) !default;
+ $border-style:              solid !default;
+ 
+ //font
+ $font-weight-lighter:         lighter !default;
+ $font-weight-light:           300 !default;
+ $font-weight-normal:          400 !default;
+ $font-weight-bold:            700 !default;
+ $font-weight-bolder:          bolder !default;
+ $font-size-max: 40 !default;
+ $font-size-min: 24 !default;
+ 
+ //shadow
+ $box-shadow:               0 rpx(2) rpx(16) #c8c8c8 !default;
+ $box-shadow-l:             0 rpx(2) rpx(32) #c8c8c8 !default;
+ $box-shadow-s:             0 rpx(2) rpx(8) #c8c8c8 !default;
+ 
+ 

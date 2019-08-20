@@ -1,0 +1,86 @@
+@import "./vars";
+$color-full-list: map-merge($color-list, $gray-list);
+//背景色
+@each $color-name,$color-value in $color-full-list {
+  .bg-#{$color-name} {
+    background-color: $color-value;
+  }
+}
+
+//字体色
+@each $color-name,$color-value in $color-full-list {
+  .text-#{$color-name} {
+    color: $color-value;
+  }
+}
+
+//字体大小
+// text-Size
+@for $i from $font-size-min through $font-size-max {
+  .fs-#{$i} {
+    font-size: rpx($i);
+  }
+}
+
+//字体调整
+.text-left           { text-align: left; }
+.text-right          { text-align: right; }
+.text-center         { text-align: center; }
+.text-justify        { text-align: justify; }
+.text-nowrap         { white-space: nowrap; }
+.text-indent         { text-indent: 2em; }
+
+//text-Transformation
+.text-lowercase      { text-transform: lowercase; }
+.text-uppercase      { text-transform: uppercase; }
+.text-capitalize     { text-transform: capitalize; }
+
+//text type
+.text-delete {
+  text-decoration: line-through;
+}
+
+.text-vcenter {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.text-vtop {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.text-vbottom {
+  display: table-cell;
+  vertical-align: bottom;
+}
+
+// text limit
+%text-limit {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+}
+@for $i from 1 through $layout-number {
+  .text-limit#{$i} {
+    @extend %text-limit;
+
+    -webkit-line-clamp: $i;
+  }
+
+  .text-fixed#{$i}{
+    height: $line-height-base * $i +em;
+    @extend %text-limit;
+
+    -webkit-line-clamp: $i;
+  }
+}
+
+// text weight
+.fw-light             { font-weight: $font-weight-light; }
+.fw-lighter           { font-weight: $font-weight-lighter; }
+.fw-normal            { font-weight: $font-weight-normal; }
+.fw-bold              { font-weight: $font-weight-bold; }
+.fw-bolder            { font-weight: $font-weight-bolder; }
+.font-italic          { font-style: italic; }
