@@ -46,118 +46,283 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
+    redirect: '/createContract/contractTempleteManagement',
+    meta: { title: '合同制作' },
     children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      path: 'contractTempleteManagement',
+      name: 'ContractTempleteManagement',
+      component: () => import('@/views/createContract/contractTempleteManagement'),
+      meta: { title: '合同模板管理' }
+    },
+    {
+      path: 'contractTextManagement',
+      name: 'ContractTextManagement',
+      component: () => import('@/views/createContract/contractTextManagement'),
+      meta: { title: '合同文本管理' }
     }]
   },
 
   {
-    path: '/example',
+    path: '/standardVerify',
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'example' },
+    redirect: '/standardVerify/contractTempleteVerify',
+    meta: { title: '规范审核' },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        path: 'contractTempleteVerify',
+        name: 'ContractTempleteVerify',
+        component: () => import('@/views/standardVerify/contractTempleteVerify'),
+        meta: { title: '合同模板审核' }
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
-      }
-    ]
-  },
-
-  {
-    path: '/form',
-    component: Layout,
-    children: [
+        path: 'contractTextVerify',
+        name: 'ContractTextVerify',
+        component: () => import('@/views/standardVerify/contractTextVerify'),
+        meta: { title: '合同文本审核' }
+      },
       {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
+        path: 'templeteVariableManagement',
+        name: 'TempleteVariableManagement',
+        component: () => import('@/views/standardVerify/templeteVariableManagement'),
+        meta: { title: '模板变量管理' }
+      },
+      {
+        path: 'contractTempleteStandard',
+        name: 'ContractTempleteStandard',
+        component: () => import('@/views/standardVerify/contractTempleteStandard'),
+        meta: { title: '合同模板规范' }
+      },
+      {
+        path: 'mailTempleteManagement',
+        name: 'MailTempleteManagement',
+        component: () => import('@/views/standardVerify/mailTempleteManagement'),
+        meta: { title: '邮件模板管理' }
       }
     ]
   },
 
   {
-    path: '/nested',
+    path: '/printSend',
     component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
-    meta: {
-      title: 'Nested',
-      icon: 'nested'
+    redirect: '/printSend/printContract',
+    meta: { title: '打印寄送' },
+    children: [{
+      path: 'printContract',
+      name: 'PrintContract',
+      component: () => import('@/views/printSend/printContract'),
+      meta: { title: '打印合同文本' }
     },
-    children: [
-      {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
-      },
-      {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        meta: { title: 'menu2' }
-      }
-    ]
+    {
+      path: 'sendContract',
+      name: 'SendContract',
+      component: () => import('@/views/printSend/sendContract'),
+      meta: { title: '寄送合同文本' }
+    },
+    {
+      path: 'verifyMailInfo',
+      name: 'VerifyMailInfo',
+      component: () => import('@/views/printSend/verifyMailInfo'),
+      meta: { title: '邮寄信息核对' }
+    }]
   },
 
   {
-    path: 'external-link',
+    path: '/trackFile',
     component: Layout,
-    children: [
-      {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link' }
-      }
-    ]
+    redirect: '/trackFile/recordContractStatus',
+    meta: { title: '追踪归档' },
+    alwaysShow: true,
+    children: [{
+      path: 'recordContractStatus',
+      name: 'RecordContractStatus',
+      component: () => import('@/views/trackFile/recordContractStatus'),
+      meta: { title: '合同状态记录' }
+    }]
   },
+
+  {
+    path: '/systemManagement',
+    component: Layout,
+    redirect: '/systemManagement/userAuthManagement',
+    meta: { title: '系统管理' },
+    children: [{
+      path: 'userAuthManagement',
+      name: 'UserAuthManagement',
+      component: () => import('@/views/systemManagement/userAuthManagement'),
+      meta: { title: '用户权限管理' }
+    },
+    {
+      path: 'signUserManagement',
+      name: 'SignUserManagement',
+      component: () => import('@/views/systemManagement/signUserManagement'),
+      meta: { title: '签署人员管理' }
+    },
+    {
+      path: 'contractProperRegular',
+      name: 'ContractProperRegular',
+      component: () => import('@/views/systemManagement/contractProperRegular'),
+      meta: { title: '合同适用规则' }
+    },
+    {
+      path: 'infoCheckTip',
+      name: 'InfoCheckTip',
+      component: () => import('@/views/systemManagement/infoCheckTip'),
+      meta: { title: '信息核对提醒' }
+    }]
+  },
+
+  {
+    path: '/signContract',
+    redirect: '/signContract/signContract',
+    component: Layout,
+    meta: { title: '合同签署' },
+    alwaysShow: true,
+    children: [{
+      path: 'signContract',
+      name: 'SignContract',
+      component: () => import('@/views/signContract/signContract'),
+      meta: { title: '合同电子签署' }
+    }]
+  },
+
+  {
+    path: '/reportList',
+    redirect: '/reportList/reportList',
+    component: Layout,
+    meta: { title: '报表查询' },
+    alwaysShow: true,
+    children: [{
+      path: 'reportList',
+      name: 'ReportList',
+      component: () => import('@/views/reportList/reportList'),
+      meta: { title: 'TBD' }
+    }]
+  },
+
+  {
+    path: '/todoList',
+    component: Layout,
+    redirect: '/todoList/todoList',
+    meta: { title: '代办事项' },
+    children: [{
+      path: 'todoList',
+      name: 'TodoList',
+      component: () => import('@/views/todoList/todoList'),
+      meta: { title: '代办事项清单' }
+    },
+    {
+      path: 'mailUpdateRequest',
+      name: 'MailUpdateRequest',
+      component: () => import('@/views/todoList/mailUpdateRequest'),
+      meta: { title: '邮件更新请求' }
+    }]
+  },
+
+  // {
+  //   path: '/dashboard',
+  //   component: Layout,
+  //   alwaysShow: true,
+  //   meta: { title: 'Dashboard', icon: 'dashboard' },
+  //   children: [{
+  //     path: 'dashboard',
+  //     name: 'Dashboard',
+  //     component: () => import('@/views/dashboard/index'),
+  //     meta: { title: 'Dashboard', icon: 'dashboard' }
+  //   }]
+  // },
+
+  // {
+  //   path: '/example',
+  //   component: Layout,
+  //   redirect: '/example/table',
+  //   name: 'Example',
+  //   meta: { title: 'Example', icon: 'example' },
+  //   children: [
+  //     {
+  //       path: 'table',
+  //       name: 'Table',
+  //       component: () => import('@/views/table/index'),
+  //       meta: { title: 'Table', icon: 'table' }
+  //     },
+  //     {
+  //       path: 'tree',
+  //       name: 'Tree',
+  //       component: () => import('@/views/tree/index'),
+  //       meta: { title: 'Tree', icon: 'tree' }
+  //     }
+  //   ]
+  // },
+
+  // {
+  //   path: '/form',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       name: 'Form',
+  //       component: () => import('@/views/form/index'),
+  //       meta: { title: 'Form', icon: 'form' }
+  //     }
+  //   ]
+  // },
+
+  // {
+  //   path: '/nested',
+  //   component: Layout,
+  //   redirect: '/nested/menu1',
+  //   name: 'Nested',
+  //   meta: {
+  //     title: 'Nested',
+  //     icon: 'nested'
+  //   },
+  //   children: [
+  //     {
+  //       path: 'menu1',
+  //       component: () => import('@/views/nested/menu1/index'), // Parent router-view
+  //       name: 'Menu1',
+  //       meta: { title: 'Menu1' },
+  //       children: [
+  //         {
+  //           path: 'menu1-1',
+  //           component: () => import('@/views/nested/menu1/menu1-1'),
+  //           name: 'Menu1-1',
+  //           meta: { title: 'Menu1-1' }
+  //         },
+  //         {
+  //           path: 'menu1-2',
+  //           component: () => import('@/views/nested/menu1/menu1-2'),
+  //           name: 'Menu1-2',
+  //           meta: { title: 'Menu1-2' },
+  //           children: [
+  //             {
+  //               path: 'menu1-2-1',
+  //               component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
+  //               name: 'Menu1-2-1',
+  //               meta: { title: 'Menu1-2-1' }
+  //             },
+  //             {
+  //               path: 'menu1-2-2',
+  //               component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
+  //               name: 'Menu1-2-2',
+  //               meta: { title: 'Menu1-2-2' }
+  //             }
+  //           ]
+  //         },
+  //         {
+  //           path: 'menu1-3',
+  //           component: () => import('@/views/nested/menu1/menu1-3'),
+  //           name: 'Menu1-3',
+  //           meta: { title: 'Menu1-3' }
+  //         }
+  //       ]
+  //     },
+  //     {
+  //       path: 'menu2',
+  //       component: () => import('@/views/nested/menu2/index'),
+  //       meta: { title: 'menu2' }
+  //     }
+  //   ]
+  // },
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
