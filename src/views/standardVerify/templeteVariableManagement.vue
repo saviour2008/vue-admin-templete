@@ -1,37 +1,48 @@
 <template>
   <div class>
-     <div class="page-title">模板变量列表</div>
+    <div class="page-title">模板变量列表</div>
+    <div class="paddingh20">
+      <el-card>
+        <el-tabs v-model="activeName" @tab-click="switchVariableTabs">
+          <el-tab-pane label="系统信息" name="systemInfoTab">
+            <SystemInfo></SystemInfo>
+          </el-tab-pane>
 
-     <div class="paddingh20">
-       <el-card>
-        <el-tabs v-model="activeName" @tab-click="handleClick">
-          <el-tab-pane label="系统信息" name="first">系统信息</el-tab-pane>
-          <el-tab-pane label="输入信息" name="second">输入信息</el-tab-pane>
-          <el-tab-pane label="表格信息" name="third">表格信息</el-tab-pane>
+          <el-tab-pane label="输入信息" name="inputInfoTab">
+            <InputInfo></InputInfo>
+          </el-tab-pane>
+
+          <el-tab-pane label="表格信息" name="tableInfoTab">
+
+          </el-tab-pane>
         </el-tabs>
       </el-card>
-     </div>
-     
+    </div>
   </div>
 </template>
 
 <script>
-
+  import SystemInfo from './component/systemInfo'
+  import InputInfo from './component/inputInfo'
   export default {
     name: 'TempleteVariableManagement',
+    components: {
+      SystemInfo,
+      InputInfo
+    },
     data() {
       return {
-        activeName: 'second'
+        activeName: 'systemInfoTab'
       }
     },
     created() {
-       
+      // this.getSystemInfoList();
     },
     mounted() {
       
     },
     methods: {
-      handleClick(tab, event) {
+      switchVariableTabs(tab, event) {
         console.log(tab, event);
       }
     }

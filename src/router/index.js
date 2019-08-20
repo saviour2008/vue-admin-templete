@@ -39,6 +39,7 @@ export const constantRoutes = [
 
   {
     path: '/404',
+    name: 'Page404',
     component: () => import('@/views/404'),
     hidden: true
   },
@@ -46,7 +47,7 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/createContract/contractTempleteManagement',
+    redirect: '/contractTempleteManagement',
     meta: { title: '合同制作' },
     children: [{
       path: 'contractTempleteManagement',
