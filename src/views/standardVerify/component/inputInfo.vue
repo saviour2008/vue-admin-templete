@@ -32,7 +32,7 @@
             :value="item.value"
           />
         </el-select>
-        <i class="el-icon-arrow-up marginl20 float-right" @click="switchInputInfoFilterArea" />
+        <i class="el-icon-arrow-up marginl20 text-blue float-right" @click="switchInputInfoFilterArea" />
         <svg-icon icon-class="example" class="text-blue float-right" @click="switchInputInfoFilterArea" />
       </el-row>
       <el-row v-show="showInputInfoFilterArea" class="margint20">
@@ -60,12 +60,17 @@
         <el-table-column sortable prop="fontLimit" label="字数上限" width="120" align="center" />
         <el-table-column sortable prop="editDate" label="编辑时间" width="180" align="center" />
         <el-table-column label="操作" align="center">
-          <template slot-scope="scope">
-            <i class="el-icon-edit" style="cursor: pointer;" @click="selectOperation(scope)" />
-            <div v-show="scope.row.isShow" class="oprationButtonGroup">
-              <div style="text-align:left"><el-button type="text" icon="el-icon-edit" size="mini">编辑</el-button></div>
-              <div><el-button style="color:red" type="text" icon="el-icon-delete" size="mini">删除</el-button></div>
-            </div>
+          <template slot-scope="{row}">
+            <el-popover
+              ref="popover3"
+              placement="bottom"
+              width="60"
+              trigger="click"
+            >
+              <div><el-button type="text" icon="el-icon-edit" size="mini">编辑</el-button></div>
+              <div><el-button class="text-red" type="text" icon="el-icon-delete" size="mini">删除</el-button></div>
+              <i slot="reference" class="el-icon-edit" style="cursor: pointer;" />
+            </el-popover>
           </template>
         </el-table-column>
       </el-table>
@@ -148,15 +153,6 @@ export default {
         setTimeout(() => {
           this.listLoading = false
         }, 1.5 * 1000)
-      })
-    },
-    selectOperation(scope) {
-      this.inputInfoTableData.forEach((row, index) => {
-        if (index === scope.$index) {
-          scope.row.isShow === true ? scope.row.isShow = false : scope.row.isShow = true
-        } else if (row.isShow) {
-          row.isShow = false
-        }
       })
     }
   }

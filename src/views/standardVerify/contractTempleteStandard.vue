@@ -1,30 +1,49 @@
 <template>
-  <div class="dashboard-container">
-    <div class="dashboard-text">name: {{ name }}</div>
+  <div class>
+    <div class="page-title">合同模板规范</div>
+    <div class="paddingh20">
+      <el-card>
+        <el-tabs v-model="activeName" @tab-click="switchContractTemplateTabs">
+          <el-tab-pane label="合同模板类型" name="contractTemplateCategory">
+            <ContractTemplateCategory />
+          </el-tab-pane>
+
+          <el-tab-pane label="合同模板命名" name="contractTemplateNamed">
+            合同模板命名
+          </el-tab-pane>
+        </el-tabs>
+      </el-card>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
+import ContractTemplateCategory from './component/contractTemplateCategory'
 export default {
   name: 'ContractTempleteStandard',
-  computed: {
-    ...mapGetters([
-      'name'
-    ])
+  components: {
+    ContractTemplateCategory
+  },
+  data() {
+    return {
+      activeName: 'contractTemplateCategory'
+    }
+  },
+  created() {
+    // this.getSystemInfoList();
+  },
+  mounted() {
+
+  },
+  methods: {
+    switchContractTemplateTabs(tab, event) {
+      console.log(tab, event)
+    }
   }
 }
 </script>
 
-<style lang="scss" scoped>
-.dashboard {
-  &-container {
-    margin: 30px;
-  }
-  &-text {
-    font-size: 30px;
-    line-height: 46px;
-  }
-}
+<style>
+
 </style>
+

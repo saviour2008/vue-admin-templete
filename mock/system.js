@@ -22,8 +22,7 @@ for (let i = 0; i < inputInfoCount; i++) {
     'inputInfoCategory|1': ['数字', '汉字', '英文'],
     'format|1': ['数字', '汉字', '英文'],
     'fontLimit|1': [30, 60, 100],
-    editDate: '@datetime',
-    isShow: false
+    editDate: '@datetime'
   }))
 }
 
@@ -36,8 +35,25 @@ for (let i = 0; i < tableInfoCount; i++) {
     'useRate|1': ['月', '日', '年'],
     'infoName|1': ['承兑汇票种类', '乙方经销商名称', '转让原因'],
     'tableInfoCategory|1': ['数字', '汉字', '英文'],
-    editDate: '@datetime',
-    isShow: false
+    editDate: '@datetime'
+  }))
+}
+
+const contractTemplateCategoryList = []
+const contractTemplateCategoryListCount = 25
+for (let i = 0; i < contractTemplateCategoryListCount; i++) {
+  contractTemplateCategoryList.push(Mock.mock({
+    id: '@increment',
+    'reason|1': ['合规', '销售', '质量'],
+    'tmplateName|1': ['药品销售合同', '药品警戒合同', '销售终止合同'],
+    'exprise|1': ['长期', '一年'],
+    'law': '罗氏贸易',
+    'signtory': '@natural(1, 5)',
+    'emailTemplate': '@natural(1, 5)',
+    'signtoryWay|1': ['罗氏先签', '罗氏后签'],
+    'isEsignature|1': ['是', '否'],
+    'isenable|1': [true, false],
+    'isShow': false
   }))
 }
 
@@ -85,6 +101,22 @@ export default [
         code: 20000,
         data: {
           total: tableInfoList.length,
+          items: pageList
+        }
+      }
+    }
+  },
+  {
+    url: '/system/getContractTemplateCategoryList',
+    type: 'get',
+    response: config => {
+      const { page = 1, limit = 10, sort } = config.query
+      const pageList = contractTemplateCategoryList.filter((item, index) => index < limit * page && index >= limit * (page - 1))
+
+      return {
+        code: 20000,
+        data: {
+          total: contractTemplateCategoryList.length,
           items: pageList
         }
       }

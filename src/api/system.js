@@ -23,3 +23,11 @@ export function fetchTableInfoList(query) {
     params: query
   })
 }
+
+export function fetchContractTemplateCategoryList(query) {
+  return request({
+    url: '/system/getContractTemplateCategoryList',
+    method: 'get',
+    params: query
+  })
+}
