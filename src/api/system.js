@@ -1,17 +1,17 @@
 import request from '@/utils/request'
 
-export function fetchList(query) {
+export function fetchSystemInfoList(query) {
   return request({
-    url: '/system/getlist',
+    url: '/system/getSystemInfolist',
     method: 'get',
     params: query
   })
 }
 
-export function fetchContractList(query) {
-    return request({
-      url: '/system/getContractlist',
-      method: 'get',
-      params: query
-    })
+export function fetchInputInfoList(query) {
+  return request({
+    url: '/system/getInputInfolist',
+    method: 'get',
+    params: query
+  })
 }

@@ -70,3 +70,14 @@ div:focus {
   text-align: left;
   padding: 20px 0 20px 20px;
 }
+
+.oprationButtonGroup{
+  position:absolute; 
+  border: 1px solid #66b1ff;
+  top: 40px; 
+  z-index: 10; 
+  background-color: #fff; 
+  padding: 5px 20px;
+  left: 50%;
+  margin-left: -40px;
+}
