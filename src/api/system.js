@@ -15,3 +15,11 @@ export function fetchInputInfoList(query) {
     params: query
   })
 }
+
+export function fetchTableInfoList(query) {
+  return request({
+    url: '/system/getTableInfolist',
+    method: 'get',
+    params: query
+  })
+}

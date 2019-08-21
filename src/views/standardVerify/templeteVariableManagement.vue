@@ -12,7 +12,9 @@
             <InputInfo />
           </el-tab-pane>
 
-          <el-tab-pane label="表格信息" name="tableInfoTab" />
+          <el-tab-pane label="表格信息" name="tableInfoTab">
+            <TableInfo />
+          </el-tab-pane>
         </el-tabs>
       </el-card>
     </div>
@@ -22,11 +24,13 @@
 <script>
 import SystemInfo from './component/systemInfo'
 import InputInfo from './component/inputInfo'
+import TableInfo from './component/tableInfo'
 export default {
   name: 'TempleteVariableManagement',
   components: {
     SystemInfo,
-    InputInfo
+    InputInfo,
+    TableInfo
   },
   data() {
     return {

@@ -1,30 +1,30 @@
 <template>
   <div>
-    <!-- 输入信息内容开始 -->
+    <!-- 表格信息内容开始 -->
 
     <!-- filter区域开始 -->
     <div class="paddingb20">
       <el-row>
-        <el-input v-show="showInputInfoFilterArea" v-model="infoValue" placeholder="信息编号/名称" style="width: 300px;" class="marginr10" size="small">
+        <el-input v-show="showTableInfoFilterArea" v-model="infoValue" placeholder="信息编号/名称" style="width: 300px;" class="marginr10" size="small">
           <el-button slot="append" icon="el-icon-search" />
         </el-input>
-        <el-select v-show="showInputInfoFilterArea" v-model="inputValueCategory" size="small" class="marginr10" clearable placeholder="输入信息类型">
+        <el-select v-show="showTableInfoFilterArea" v-model="tableValueCategory" size="small" class="marginr10" clearable placeholder="表格信息类型">
           <el-option
-            v-for="item in inputValueCategoryList"
+            v-for="item in tableValueCategoryList"
             :key="item.label"
             :label="item.label"
             :value="item.value"
           />
         </el-select>
         <el-date-picker
-          v-show="showInputInfoFilterArea"
+          v-show="showTableInfoFilterArea"
           v-model="editTimeValue"
           size="small"
           type="date"
           placeholder="编辑时间"
           class="marginr10"
         />
-        <el-select v-show="showInputInfoFilterArea" v-model="useRateValue" size="small" clearable placeholder="使用频率">
+        <el-select v-show="showTableInfoFilterArea" v-model="useRateValue" size="small" clearable placeholder="使用频率">
           <el-option
             v-for="item in useRateList"
             :key="item.label"
@@ -32,10 +32,10 @@
             :value="item.value"
           />
         </el-select>
-        <i class="el-icon-arrow-up marginl20 float-right" @click="switchInputInfoFilterArea" />
-        <svg-icon icon-class="example" class="text-blue float-right" @click="switchInputInfoFilterArea" />
+        <i class="el-icon-arrow-up marginl20 float-right" @click="switchTableInfoFilterArea" />
+        <svg-icon icon-class="example" class="text-blue float-right" @click="switchTableInfoFilterArea" />
       </el-row>
-      <el-row v-show="showInputInfoFilterArea" class="margint20">
+      <el-row v-show="showTableInfoFilterArea" class="margint20">
         <el-button size="small" round class="float-right marginl20">取消</el-button>
         <el-button size="small" round type="primary" class="float-right">应用</el-button>
         <el-button type="primary" size="small" round class="float-right marginr10">新建</el-button>
@@ -47,18 +47,16 @@
     <div class="border">
       <el-table
         v-loading="listLoading"
-        :data="inputInfoTableData"
+        :data="tableInfoTableData"
         size="small"
         stripe
         style="width: 100%"
       >
-        <el-table-column sortable prop="infoNum" label="信息编号" width="120" align="center" />
-        <el-table-column sortable prop="useRate" label="使用频率" width="120" align="center" />
-        <el-table-column sortable prop="infoName" label="信息名称" width="200" align="center" />
-        <el-table-column sortable prop="inputInfoCategory" label="输入信息类型" width="150" align="center" />
-        <el-table-column sortable prop="format" label="格式" width="120" align="center" />
-        <el-table-column sortable prop="fontLimit" label="字数上限" width="120" align="center" />
-        <el-table-column sortable prop="editDate" label="编辑时间" width="180" align="center" />
+        <el-table-column sortable prop="infoNum" label="信息编号" width="180" align="center" />
+        <el-table-column sortable prop="useRate" label="使用频率" width="150" align="center" />
+        <el-table-column sortable prop="infoName" label="信息名称" width="220" align="center" />
+        <el-table-column sortable prop="tableInfoCategory" label="表格信息类型" width="200" align="center" />
+        <el-table-column sortable prop="editDate" label="编辑时间" width="220" align="center" />
         <el-table-column label="操作" align="center">
           <template slot-scope="scope">
             <i class="el-icon-edit" style="cursor: pointer;" @click="selectOperation(scope)" />
@@ -72,35 +70,31 @@
     </div>
     <!-- table区域结束 -->
 
-    <pagination v-show="inputInfoTableTotal>0" class="paddingb10" :total="inputInfoTableTotal" :page.sync="inputInfoListQuery.page" :limit.sync="inputInfoListQuery.limit" @pagination="getInputInfoList" />
-    <!-- 输入信息内容结束 -->
+    <pagination v-show="tableInfoTableTotal>0" class="paddingb10" :total="tableInfoTableTotal" :page.sync="tableInfoListQuery.page" :limit.sync="tableInfoListQuery.limit" @pagination="getTableInfoList" />
+    <!-- 表格信息内容结束 -->
   </div>
 </template>
 
 <script>
-import { fetchInputInfoList } from '@/api/system'
+import { fetchTableInfoList } from '@/api/system'
 import Pagination from '@/components/Pagination'
 export default {
-  name: 'InputInfo',
+  name: 'TableInfo',
   components: { Pagination },
   data() {
     return {
-      showInputInfoFilterArea: true,
+      showTableInfoFilterArea: true,
       infoValue: '',
       editTimeValue: '',
-      inputValueCategory: '',
-      inputValueCategoryList: [
+      tableValueCategory: '',
+      tableValueCategoryList: [
         {
-          label: 'A',
+          label: '通用表格',
           value: 'all'
         },
         {
-          label: 'B',
-          value: 'run'
-        },
-        {
-          label: 'C',
-          value: 'stop'
+          label: '非通用表格',
+          value: 'none'
         }
       ],
       useRateList: [
@@ -118,10 +112,10 @@ export default {
         }
       ],
       useRateValue: '',
-      inputInfoTableTotal: 0,
-      inputInfoTableData: null,
+      tableInfoTableTotal: 0,
+      tableInfoTableData: null,
       listLoading: false,
-      inputInfoListQuery: {
+      tableInfoListQuery: {
         page: 1,
         limit: 10,
         sort: '+id'
@@ -132,17 +126,17 @@ export default {
 
   },
   created() {
-    this.getInputInfoList()
+    this.getTableInfoList()
   },
   methods: {
-    switchInputInfoFilterArea() {
-      this.showInputInfoFilterArea ? this.showInputInfoFilterArea = false : this.showInputInfoFilterArea = true
+    switchTableInfoFilterArea() {
+      this.showTableInfoFilterArea ? this.showTableInfoFilterArea = false : this.showTableInfoFilterArea = true
     },
-    getInputInfoList() {
+    getTableInfoList() {
       this.listLoading = true
-      fetchInputInfoList(this.inputInfoListQuery).then(response => {
-        this.inputInfoTableData = response.data.items
-        this.inputInfoTableTotal = response.data.total
+      fetchTableInfoList(this.tableInfoListQuery).then(response => {
+        this.tableInfoTableData = response.data.items
+        this.tableInfoTableTotal = response.data.total
 
         // Just to simulate the time of the request
         setTimeout(() => {
@@ -151,7 +145,7 @@ export default {
       })
     },
     selectOperation(scope) {
-      this.inputInfoTableData.forEach((row, index) => {
+      this.tableInfoTableData.forEach((row, index) => {
         if (index === scope.$index) {
           scope.row.isShow === true ? scope.row.isShow = false : scope.row.isShow = true
         } else if (row.isShow) {
