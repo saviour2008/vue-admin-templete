@@ -51,7 +51,9 @@
 <script>
 export default {
   name: 'NewContractInputInfo',
-  props: ['showDialog'],
+  props: {
+    showDialog: Boolean
+  },
   data() {
     return {
       form: {
