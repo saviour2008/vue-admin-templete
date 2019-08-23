@@ -5,6 +5,7 @@
         <el-select v-model="form.reasonValue" clearable placeholder="事由" style="width:100%">
           <el-option
             v-for="item in reasonList"
+            :key="item.value"
             :label="item.label"
             :value="item.value"
           />
