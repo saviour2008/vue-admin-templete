@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import ContractTemplateCategory from './component/contractTemplateCategory'
+import ContractTemplateCategory from './components/contractTemplateCategory'
 export default {
   name: 'ContractTempleteStandard',
   components: {

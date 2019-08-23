@@ -22,9 +22,9 @@
 </template>
 
 <script>
-import SystemInfo from './component/systemInfo'
-import InputInfo from './component/inputInfo'
-import TableInfo from './component/tableInfo'
+import SystemInfo from './components/systemInfo'
+import InputInfo from './components/inputInfo'
+import TableInfo from './components/tableInfo'
 export default {
   name: 'TempleteVariableManagement',
   components: {

@@ -62,8 +62,9 @@
     <div class="flex-container">
       <div>
         模板类型（{{ contractTemplateCategoryListTotal }}）
-        <el-button type="primary" icon="el-icon-plus" size="small" round>新建</el-button>
+        <el-button type="primary" icon="el-icon-plus" size="small" round @click="showNewContractDialog = true">新建</el-button>
       </div>
+      <NewContractTemplateCategory :show-new-contract-dialog="showNewContractDialog" @closeDialog="showNewContractDialog = false" />
       <div class="flex-container">
         <div class="fs-12 marginr10">2019 07 02  00:21  Bruce Bu 最后更新</div>
         <el-button type="primary" icon="el-icon-upload" size="small" plain>上传模板类型列表</el-button>
@@ -137,11 +138,16 @@
 <script>
 import { fetchContractTemplateCategoryList } from '@/api/system'
 import Pagination from '@/components/Pagination'
+import NewContractTemplateCategory from '@/views/components/dialogComponents/newContractTemplateCategory'
 export default {
   name: 'ContractTemplateCategory',
-  components: { Pagination },
+  components: {
+    Pagination,
+    NewContractTemplateCategory
+  },
   data() {
     return {
+      showNewContractDialog: false,
       showContractTemplateCategoryFilterArea: true,
       infoValue: '',
       contractRangeList: [

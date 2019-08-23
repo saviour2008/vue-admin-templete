@@ -61,10 +61,9 @@ div:focus {
 }
 
 // main-container global css
-.app-container {
-  padding: 20px;
+.w100 {
+  width: 100%;
 }
-
 .page-title {
   font-size: 14px;
   text-align: left;
@@ -73,4 +72,93 @@ div:focus {
 
 .el-popover{
   min-width: 80px;
+}
+
+// step-bar
+.steps-view {
+  display: flex;
+  flex-flow: row;
+}
+
+.marginl44 {
+  margin-left: 44px;
+}
+
+.steps-view-item {
+  width: 100px;
+  height: 30px;
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 1;
+}
+
+.steps-view-item::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: 100px;
+  height: 2px;
+  background-color: #bcbcbc;
+}
+
+.steps-view-item.finish::before {
+  background-color: #1d77d2;
+}
+
+.steps-view-item:last-of-type::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: 2px;
+  height: 2px;
+  background-color: #bcbcbc;
+}
+
+.steps-view-item-status {
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 1px solid #bcbcbc
+}
+
+.steps-view-item-status.mini-point {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #d2e8ff;
+  border: 1px solid #fff;
+}
+
+.steps-view-item-status.mini-point.finish {
+  background-color: #1d77d2;
+}
+
+.steps-view-item-status.finish {
+  background-color: #d2e8ff;
+  border: 1px solid #1d77d2;
+}
+
+.steps-view-label {
+  width: 100px;
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  font-size: 12px;
+  color: #bcbcbc;
+}
+
+.steps-view-label.finish {
+  color: #1d77d2;
+}
+
+.steps-view-label.mini-label {
+  font-size: 10px;
 }
